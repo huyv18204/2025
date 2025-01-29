@@ -35,7 +35,6 @@
     button {
       width: 100px;
       height: 50px;
-
       font-weight: bold;
       cursor: pointer;
       border: none;
@@ -110,8 +109,9 @@
   const btn2 = document.querySelector(".btn-2");
   const btn1 = document.querySelector(".btn-1");
   const stk = document.querySelector(".stk");
+  const content = document.querySelector(".content");
   btn2.addEventListener("mouseover", function () {
-    btn2.textContent = "Yes";
+    moveButtonRandomly(content);
   });
   btn2.addEventListener("mouseout", function () {
     btn2.textContent = "Chệu";
@@ -120,42 +120,30 @@
     if (confirm("Bạn có chắc lì xì cho Huy không ?")) {
       stk.classList.remove("none");
       stk.classList.add("block");
+      content.classList.add("none");
     }
   });
-  btn2.addEventListener("click", function () {
-    if (confirm("Bạn có chắc lì xì cho Huy không ?")) {
-      stk.classList.remove("none");
-      stk.classList.add("block");
-    }
-  });
-
   function moveButtonRandomly(button) {
-        // Lấy kích thước của cửa sổ
-        const containerWidth = window.innerWidth;
-        const containerHeight = window.innerHeight;
-
-        // Lấy kích thước của nút
-        const btnWidth = button.offsetWidth;
-        const btnHeight = button.offsetHeight;
-
-        // Tính toán vị trí ngẫu nhiên trong vùng chứa
-        const randomX = Math.random() * (containerWidth - btnWidth);
-        const randomY = Math.random() * (containerHeight - btnHeight);
-
-        // Cập nhật vị trí của nút
-        button.style.left = randomX + "px";
-        button.style.top = randomY + "px";
-      }
+    const containerWidth = window.innerWidth;
+    const containerHeight = window.innerHeight;
+    const btnWidth = button.offsetWidth;
+    const btnHeight = button.offsetHeight;
+    const randomX = Math.random() * (containerWidth - btnWidth);
+    const randomY = Math.random() * (containerHeight - btnHeight);
+    button.style.left = randomX + "px";
+    button.style.top = randomY + "px";
+}
 
   btn2.addEventListener("touchstart", function () {
-    moveButtonRandomly(btn2)
+    moveButtonRandomly(content);
   });
 
+  btn2.addEventListener("click", function () {
+    moveButtonRandomly(content);
+  });
 </script>
 
 <script>
-  // when animating on canvas, it is best to use requestAnimationFrame instead of setTimeout or setInterval
-  // not supported in all browsers though and sometimes needs a prefix, so we need a shim
   window.requestAnimFrame = (function () {
     return (
       window.requestAnimationFrame ||
