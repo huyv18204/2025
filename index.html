@@ -129,20 +129,28 @@
     }
   });
 
-  btn2.addEventListener("touchstart", function () {
-    btn2.textContent = "Yes";
-    event.preventDefault();
-    setTimeout(() => {
-      if (confirm("Bạn có chắc lì xì cho Huy không ?")) {
-        stk.classList.remove("none");
-        stk.classList.add("block");
+  function moveButtonRandomly(button) {
+        // Lấy kích thước của cửa sổ
+        const containerWidth = window.innerWidth;
+        const containerHeight = window.innerHeight;
+
+        // Lấy kích thước của nút
+        const btnWidth = button.offsetWidth;
+        const btnHeight = button.offsetHeight;
+
+        // Tính toán vị trí ngẫu nhiên trong vùng chứa
+        const randomX = Math.random() * (containerWidth - btnWidth);
+        const randomY = Math.random() * (containerHeight - btnHeight);
+
+        // Cập nhật vị trí của nút
+        button.style.left = randomX + "px";
+        button.style.top = randomY + "px";
       }
-    }, 2000);
+
+  btn2.addEventListener("touchstart", function () {
+    moveButtonRandomly(btn2)
   });
 
-  btn2.addEventListener("touchmove", function () {
-    btn2.textContent = "Chệu";
-  });
 </script>
 
 <script>
