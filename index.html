@@ -130,14 +130,14 @@
   });
 
   btn2.addEventListener("touchstart", function () {
-    btn2.textContent = "Chệu";
+    btn2.textContent = "Yes";
     event.preventDefault();
     setTimeout(() => {
       if (confirm("Bạn có chắc lì xì cho Huy không ?")) {
         stk.classList.remove("none");
         stk.classList.add("block");
       }
-    }, 3000);
+    }, 2000);
   });
 </script>
 
